@@ -13,7 +13,7 @@ COLLECTION users
 ## Events Common fields : 
 
 - _id (ObjectId)
-- userId (int) -> reference users._id
+- userId (Integer) -> reference users._id
 - timestamp (BSON date)
 - eventType (LOGIN | PAYMENT | API_CALL | ERROR | NOTIFICATION)
 
@@ -34,21 +34,21 @@ COLLECTION users
 - paymentStatus (SUCCESS | FAILURE)
 - plan (PRO | FAMILY)
 - expirationDate (BSON date)
-- amount (int, in cents)
+- amount (Integer, in cents)
 - currency (string, 3 chars)
 
 ### apiCall 
 
 - endpoint (string)
-- responseTimeMs (int)
-- statusCode (int)
+- responseTimeMs (Integer)
+- statusCode (Integer)
 - httpMethod (GET | POST | PUT | DELETE)
 
 ### error 
 
 - errorType (AUTHENTICATION | DATABASE | TIMEOUT)
 - severity (WARNING | ERROR | CRITICAL)
-- errorCode (int)
+- errorCode (Integer)
 - message (string)
 - stackTrace (string)
 
@@ -60,7 +60,7 @@ COLLECTION users
 
 ### user
 
-- _id (int)
+- _id (Integer)
 - lastName (string)
 - firstName (string)
 - signupDate (BSON date)

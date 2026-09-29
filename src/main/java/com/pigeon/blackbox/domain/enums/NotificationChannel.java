@@ -1,6 +1,6 @@
 package com.pigeon.blackbox.domain.enums;
 
-public enum Channel {
+public enum NotificationChannel {
     SMS, 
     EMAIL,
     PUSH

@@ -15,7 +15,7 @@ public abstract class Event {
     @Id 
     private ObjectId eventId; 
 
-    // Integer over int : can be null and checked with Spring Validation 
+    // Integer over Integer : can be null and checked with Spring Validation 
     private Integer userId; 
 
     // Instant : UTC date formatted into BSON for Mongo
