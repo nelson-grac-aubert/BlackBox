@@ -1,11 +1,11 @@
 # 5 Document Schema : 
 
 COLLECTION events
-- login
-- payment
-- apiCall
-- error
-- notification
+- LOGIN
+- PAYMENT
+- API_CALL
+- ERROR
+- NOTIFICATION
 
 COLLECTION users
 - referenced on all EVENTS via userId
@@ -15,24 +15,24 @@ COLLECTION users
 - _id (ObjectId)
 - userId (int) -> reference users._id
 - timestamp (BSON date)
-- eventType (string)
+- eventType (LOGIN | PAYMENT | API_CALL | ERROR | NOTIFICATION)
 
 ## Specific fields :
 
 ### login 
 
-- loginStatus (success | failure)
+- loginStatus (SUCCESS | FAILURE)
 - ipAddress (string)
 - device {
-    - deviceType (mobile | desktop | tablet)
+    - deviceType (MOBILE | DESKTOP | TABLET)
     - os (string)
     - browser (string)
 }
 
 ### payment 
 
-- paymentStatus (success | failure)
-- plan (pro | family)
+- paymentStatus (SUCCESS | FAILURE)
+- plan (PRO | FAMILY)
 - expirationDate (BSON date)
 - amount (int, in cents)
 - currency (string, 3 chars)
@@ -42,21 +42,21 @@ COLLECTION users
 - endpoint (string)
 - responseTimeMs (int)
 - statusCode (int)
-- httpMethod (GET | POST...)
+- httpMethod (GET | POST | PUT | DELETE)
 
 ### error 
 
-- errorType (authentication | database | timeout)
-- severity (warning | error | critical)
+- errorType (AUTHENTICATION | DATABASE | TIMEOUT)
+- severity (WARNING | ERROR | CRITICAL)
 - errorCode (int)
 - message (string)
 - stackTrace (string)
 
 ### notification 
 
-- notificationStatus (pending | delivered | failed)
-- template (welcome | reminder | paymentExpired)
-- channel (sms | email | push)
+- notificationStatus (PENDING | DELIVERED | FAILED)
+- template (WELCOME | REMINDER | PAYMENT_EXPIRED)
+- channel (SMS | EMAIL | PUSH)
 
 ### user
 
@@ -86,7 +86,7 @@ Referencing choice : every single event logged is linked to a user via referenci
 
 # Analytic 4 : the funnel 
 
-notification of type 'paymentExpired' , then login , then payment with paymentStatus:success
+NOTIFICATION with template:PAYMENT_EXPIRED, then LOGIN, then PAYMENT with paymentStatus:SUCCESS
 The endpoint will return 3 ints, for example : 
 1000 notified, 600 logged in, 200 re-subscribed
 
