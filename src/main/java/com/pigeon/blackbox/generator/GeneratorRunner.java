@@ -6,7 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import com.pigeon.blackbox.domain.model.Event;
 import com.pigeon.blackbox.generator.population.UserGenerator;
 import com.pigeon.blackbox.generator.random.WeightedPicker;
 
