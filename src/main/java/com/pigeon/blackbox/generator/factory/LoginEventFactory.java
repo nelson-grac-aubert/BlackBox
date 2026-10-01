@@ -23,7 +23,6 @@ public class LoginEventFactory implements EventFactory {
     private static final String[] BROWSERS = {"Safari", "Opera", "Chrome", "Internet Explorer"};
     private static final LoginStatus[] STATUSES = LoginStatus.values();
     private static final String[] IP_ADDRESSES = {"192.0.2.14", "192.0.2.87", "192.0.2.203", "198.51.100.7", "198.51.100.42", "198.51.100.156", "198.51.100.231", "203.0.113.9", "203.0.113.68", "203.0.113.190"};
-    
 
     public LoginEventFactory(UniformPicker uniformPicker) {
         this.uniformPicker = uniformPicker; 
