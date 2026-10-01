@@ -1,8 +1,10 @@
 package com.pigeon.blackbox.generator.time;
 
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -87,5 +89,19 @@ public class TimestampGenerator {
         return weightsByHour;
     }
     
+    // Pick a weighted Instant 
+    public Instant randomTimestamp() { 
+        LocalDate day = dayPicker.pick(); 
+
+        int hour = hourPicker.pick();
+        int minute = randomGenerator.nextInt(60); 
+        int second = randomGenerator.nextInt(60); 
+        int millisecond = randomGenerator.nextInt(1000); 
+
+        ZonedDateTime parisTime = day.atTime(hour, minute, second, millisecond * 1_000_000).atZone(ZONE);
+
+        return parisTime.toInstant();
+
+    }
 
 }
