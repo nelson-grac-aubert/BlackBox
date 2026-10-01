@@ -3,7 +3,9 @@ package com.pigeon.blackbox.generator.population;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.random.RandomGenerator;
 
 import org.springframework.context.annotation.Profile;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.pigeon.blackbox.domain.repository.UserRepository;
 import com.pigeon.blackbox.domain.model.User;
 import com.pigeon.blackbox.generator.SimulationPeriod;
+import com.pigeon.blackbox.generator.random.WeightedPicker;
 
 @Component
 @Profile("generate")
@@ -55,6 +58,18 @@ public class UserGenerator {
         userRepository.saveAll(users); 
 
         return users.size(); 
+
+    }
+
+    public WeightedPicker<Integer> createUserPicker() { 
+        Map<Integer, Double> weightById = new LinkedHashMap<>();
+
+        for (int id = 1; id <= TOTAL_USERS; id++) {
+            double weight = (id <= BIG_USERS ? BIG_USER_WEIGHT : SMALL_USER_WEIGHT);
+            weightById.put(id, weight);  
+        }
+
+        return new WeightedPicker<>(weightById, randomGenerator);
 
     }
 }
