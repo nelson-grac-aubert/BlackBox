@@ -1,5 +1,6 @@
 package com.pigeon.blackbox.generator;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +9,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.pigeon.blackbox.domain.enums.EventType;
+import com.pigeon.blackbox.domain.model.Event;
 import com.pigeon.blackbox.domain.repository.EventRepository;
 import com.pigeon.blackbox.generator.factory.EventFactory;
+import com.pigeon.blackbox.generator.random.WeightedPicker;
 import com.pigeon.blackbox.generator.time.TimestampGenerator;
 
 @Component 
@@ -51,4 +54,25 @@ public class EventGenerator {
         return volumes;
     }
 
+    public int generateEvents(WeightedPicker<Integer> userPicker) {
+        
+        eventRepository.deleteAll();
+
+        List<Event> events = new ArrayList<>();
+
+        // get the number of each event type to generate
+        for (Map.Entry<EventType, Integer> entry : volumeByType.entrySet()) {
+            EventFactory factory = factoryByType.get(entry.getKey());
+            int volume = entry.getValue();
+
+            // weighted Pareto user distribution
+            for (int i = 0; i < volume; i++) {
+                events.add(factory.create(userPicker.pick(), timestampGenerator.randomTimestamp()));
+            }
+        }
+
+        eventRepository.saveAll(events);
+        return events.size();
+
+    }
 }
