@@ -17,4 +17,9 @@ public class UniformPicker {
     public <E> E randomOf(E[] values) {
         return values[randomGenerator.nextInt(values.length)];
     }
+
+    public int randomInt(int min, int max) {
+        return randomGenerator.nextInt(min, max);
+    }
+
 }
