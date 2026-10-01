@@ -33,8 +33,8 @@ COLLECTION users
 
 - paymentStatus (SUCCESS | FAILURE)
 - plan (PRO | FAMILY)
-- expirationDate (BSON date)
-- amount (Integer, in cents)
+- expirationDate (BSON date) NULL IF FAILURE
+- amount (Integer, in cents) NULL IF FAILURE
 - currency (string, 3 chars)
 
 ### apiCall 
