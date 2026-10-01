@@ -3,9 +3,11 @@ package com.pigeon.blackbox.domain.model;
 import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users") 
+@TypeAlias("USER")
 public class User {
     @Id
     private Integer userId; 
