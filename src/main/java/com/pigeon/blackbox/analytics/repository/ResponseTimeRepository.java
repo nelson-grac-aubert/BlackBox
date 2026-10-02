@@ -34,7 +34,7 @@ public class ResponseTimeRepository {
         MatchOperation matchApiCalls = Aggregation.match(Criteria.where("eventType").is(EventType.API_CALL.name())
             .and("timestamp").gte(from).lt(to));
 
-        // Count all the API call events, calculate their average, their 95th percentile
+        // GROUP API calls by endpoint: count, mean and 95th percentile of response times
         GroupOperation groupByEndpoint = Aggregation.group("endpoint")
             .count().as("callCount")
             .avg("responseTimeMs").as("avgResponseTimeMs")
@@ -47,7 +47,7 @@ public class ResponseTimeRepository {
             .and(ArrayOperators.ArrayElemAt.arrayOf("p95").elementAt(0)).as("p95ResponseTimeMs")
             .andExclude("_id");
 
-        // Order endpoints by alphabeticall order 
+        // Order endpoints by alphabetical order 
         SortOperation sortByEndpoint = Aggregation.sort(Sort.by("endpoint"));
 
         Aggregation aggregation = Aggregation.newAggregation(matchApiCalls, groupByEndpoint, flatten, sortByEndpoint);
