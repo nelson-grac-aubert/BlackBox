@@ -33,7 +33,7 @@ public class ResponseTimeService {
         Instant start = from.atStartOfDay(ZONE).toInstant();
         Instant end = to.atStartOfDay(ZONE).toInstant();
 
-        return responseTimeRepository.findResponseTimesByEndpoint(start, end);
+        return responseTimeRepository.findResponseTimeByEndpoint(start, end);
     }
     
 }

@@ -28,7 +28,7 @@ public class ResponseTimeRepository {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<EndpointResponseTime> findResponseTimesByEndpoint(Instant from, Instant to) {
+    public List<EndpointResponseTime> findResponseTimeByEndpoint(Instant from, Instant to) {
         
         // MATCH only API calls in the time period
         MatchOperation matchApiCalls = Aggregation.match(Criteria.where("eventType").is(EventType.API_CALL.name())
