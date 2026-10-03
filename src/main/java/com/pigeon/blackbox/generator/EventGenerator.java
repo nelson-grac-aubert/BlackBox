@@ -43,14 +43,14 @@ public class EventGenerator {
 
     }
 
-    // Realistic distribution of 100k event types over a year
+    // Realistic distribution of 204k event types over a year
     private static Map<EventType, Integer> eventVolumes() {
         Map<EventType, Integer> volumes = new EnumMap<>(EventType.class);
-        volumes.put(EventType.API_CALL, 50000);
-        volumes.put(EventType.LOGIN, 20000);
-        volumes.put(EventType.NOTIFICATION, 20000);
-        volumes.put(EventType.ERROR, 8000);
-        volumes.put(EventType.PAYMENT, 4000);
+        volumes.put(EventType.API_CALL, 100_000);
+        volumes.put(EventType.LOGIN, 40_000);
+        volumes.put(EventType.NOTIFICATION, 40_000);
+        volumes.put(EventType.ERROR, 16_000);
+        volumes.put(EventType.PAYMENT, 8_000);
         return volumes;
     }
 
