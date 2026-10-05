@@ -34,7 +34,7 @@ public class TopUsersService {
         Instant start = from.atStartOfDay(ZONE).toInstant();
         Instant end = to.atStartOfDay(ZONE).toInstant();
 
-        return topUsersRepository.countErrorsByDayAndType(start, end);
+        return topUsersRepository.topUsers(start, end);
 
     }
 

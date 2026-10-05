@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pigeon.blackbox.analytics.dto.TopUsers;
-import com.pigeon.blackbox.analytics.service.TopUsersService;
+import com.pigeon.blackbox.analytics.repository.TopUsersRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -40,6 +40,6 @@ public class TopUsersController {
             @Parameter(description = "End date, exclusive", example = "2025-04-01")
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
         // No logic here: validation and conversion are done by the service
-        return topUsersService.getTopActiveUsers(from, to);
+        return topUsersRepository.getTopActiveUsers(from, to);
     }
 }
