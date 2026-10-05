@@ -4,18 +4,20 @@ import java.time.Instant;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.pigeon.blackbox.domain.enums.EventType;
 
 // All subclasses share this collection
-@Document(collection = "events") 
+@Document(collection = "events")
+@CompoundIndex(name = "eventType_timestamp", def = "{ 'eventType': 1, 'timestamp': 1 }") 
 // abstract : we don't create "just an Event", we need a type and specific fields
 public abstract class Event {
     @Id 
     private ObjectId eventId; 
 
-    // Integer over Integer : can be null and checked with Spring Validation 
+    // Integer over int : can be null and checked with Spring Validation 
     private Integer userId; 
 
     // Instant : UTC date formatted into BSON for Mongo
