@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pigeon.blackbox.analytics.dto.TopUser;
+import com.pigeon.blackbox.analytics.dto.TopUsers;
 import com.pigeon.blackbox.analytics.service.TopUsersService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +33,7 @@ public class TopUsersController {
     @Operation(
             summary = "Top 10 most active users",
             description = "Ranks users by number of events of any type over the period. Ties are broken by lowest user id.")
-    public List<TopUser> getTopActiveUsers(
+    public List<TopUsers> getTopActiveUsers(
             // URL parameters, converted from ISO text (yyyy-MM-dd) to LocalDate
             @Parameter(description = "Start date, inclusive", example = "2025-03-01")
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
