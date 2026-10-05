@@ -5,10 +5,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-import com.pigeon.blackbox.analytics.DTO.TopUsers;
+import com.pigeon.blackbox.analytics.dto.TopUsers;
 import org.springframework.stereotype.Service;
 
-import com.pigeon.blackbox.analytics.dto.ErrorCountByDay;
 import com.pigeon.blackbox.analytics.repository.TopUsersRepository;
 
 @Service
@@ -21,7 +20,7 @@ public class TopUsersService {
         this.topUsersRepository = topUsersRepository;
     }
 
-    public List<ErrorCountByDay> getErrorsByDayAndType(LocalDate from, LocalDate to) {
+    public List<TopUsers> getTopActiveUsers(LocalDate from, LocalDate to) {
         // Both date limits must exist
         if (from == null || to == null) {
             throw new IllegalArgumentException("Both 'from' and 'to' dates are required");

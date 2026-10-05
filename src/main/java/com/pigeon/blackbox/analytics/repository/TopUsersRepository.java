@@ -1,6 +1,6 @@
 package com.pigeon.blackbox.analytics.repository;
 
-import com.pigeon.blackbox.analytics.DTO.TopUsers;
+import com.pigeon.blackbox.analytics.dto.TopUsers;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.*;
